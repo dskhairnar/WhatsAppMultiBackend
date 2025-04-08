@@ -3,8 +3,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Copy the solution and project files
-COPY WhatsAppMultiBackend.sln .
-COPY WhatsAppMultiBackend/ /src/WhatsAppMultiBackend/
+COPY ../*.sln .
+COPY . /src/WhatsAppMultiBackend/
 
 # Restore the project
 WORKDIR /src/WhatsAppMultiBackend
