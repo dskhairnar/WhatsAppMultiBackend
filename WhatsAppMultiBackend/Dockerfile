@@ -4,14 +4,11 @@ WORKDIR /src
 
 # Copy the solution and project files
 COPY WhatsAppMultiBackend.sln .
-COPY WhatsAppMultiBackend/*.csproj ./WhatsAppMultiBackend/
+COPY WhatsAppMultiBackend/ WhatsAppMultiBackend/
 
 # Restore the project
 WORKDIR /src/WhatsAppMultiBackend
 RUN dotnet restore
-
-# Copy the rest of the files
-COPY WhatsAppMultiBackend/. ./WhatsAppMultiBackend/
 
 # Publish the app
 RUN dotnet publish -c Release -o /app/out
