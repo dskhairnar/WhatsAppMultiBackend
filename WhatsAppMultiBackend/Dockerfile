@@ -22,11 +22,10 @@ COPY --from=build /app/out .
 VOLUME /app/data
 
 # Set environment variables
-ENV ASPNETCORE_URLS=http://+:80;https://+:443
+ENV ASPNETCORE_URLS=http://+:80
 ENV ASPNETCORE_ENVIRONMENT=Production
 
 # Expose ports
 EXPOSE 80
-EXPOSE 443
 
 ENTRYPOINT ["dotnet", "WhatsAppMultiBackend.dll"]
