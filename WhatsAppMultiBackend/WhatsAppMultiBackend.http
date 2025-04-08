@@ -1,0 +1,6 @@
+@WhatsAppMultiBackend_HostAddress = http://localhost:5195
+
+GET {{WhatsAppMultiBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
