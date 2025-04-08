@@ -4,7 +4,7 @@ WORKDIR /src
 
 # Copy the solution and project files
 COPY WhatsAppMultiBackend.sln .
-COPY WhatsAppMultiBackend/ WhatsAppMultiBackend/
+COPY WhatsAppMultiBackend/ .
 
 # Restore the project
 WORKDIR /src/WhatsAppMultiBackend
