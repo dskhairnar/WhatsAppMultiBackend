@@ -1,16 +1,24 @@
 # Stage 1: Build
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /app
+WORKDIR /src
 
-# Copy everything and restore dependencies
-COPY . .
-WORKDIR /app/WhatsAppMultiBackend
+# Copy the solution and project files
+COPY WhatsAppMultiBackend/WhatsAppMultiBackend.sln .
+COPY WhatsAppMultiBackend/WhatsAppMultiBackend/*.csproj ./WhatsAppMultiBackend/
+
+# Restore the project
+WORKDIR /src/WhatsAppMultiBackend
 RUN dotnet restore
-RUN dotnet publish -c Release -o out
+
+# Copy the rest of the files
+COPY WhatsAppMultiBackend/. ./WhatsAppMultiBackend/
+
+# Publish the app
+RUN dotnet publish -c Release -o /app/out
 
 # Stage 2: Run
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
-COPY --from=build /app/WhatsAppMultiBackend/out .
+COPY --from=build /app/out .
 
 ENTRYPOINT ["dotnet", "WhatsAppMultiBackend.dll"]
